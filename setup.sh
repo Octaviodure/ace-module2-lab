@@ -34,7 +34,9 @@ echo "Follow the prompts below to authenticate."
 echo "CRITICAL: If pasting a Personal Access Token (PAT),"
 echo "ensure you check the box for the 'workflow' scope!"
 echo "--------------------------------------------------------"
-gh auth login
+if ! gh auth status >/dev/null 2>&1; then
+  gh auth login
+fi
 # 4. Automatically retrieve username from authenticated session
 echo ""
 echo "[4/5] Retrieving GitHub user profile..."
